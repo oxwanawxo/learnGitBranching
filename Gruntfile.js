@@ -1,5 +1,6 @@
 var _ = require('underscore');
 var fs = require('fs');
+var babelify = require('babelify');
 
 // Haha, this is so tricky. so we have a template for index.html to stick
 // in the hashed JS and style files -- that template also contains
@@ -20,9 +21,9 @@ var indexTemplate = _.template(indexFile);
  */
 
 var prodDependencies = [
-  '<script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/4.1.1/es5-shim.min.js"></script>',
-  '<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>',
-  '<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>'
+  '<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.1.1/es5-shim.min.js"></script>',
+  '<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>',
+  '<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>'
 ];
 
 var devDependencies = [
@@ -111,6 +112,7 @@ module.exports = function(grunt) {
         'src/levels/**/*.js'
       ],
       options: {
+        esversion: 6,
         curly: true,
         // sometimes triple equality is just redundant and unnecessary
         eqeqeq: false,
@@ -212,7 +214,9 @@ module.exports = function(grunt) {
     },
     browserify: {
       options: {
-        transform: [require('grunt-react').browserify]
+        transform: [babelify.configure({
+          presets: ['@babel/preset-react']
+        })]
       },
       dist: {
         files: {
@@ -226,14 +230,13 @@ module.exports = function(grunt) {
   });
 
   // all my npm helpers
-  grunt.loadNpmTasks('grunt-jsxhint');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-hash');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-shell-spawn');
   grunt.loadNpmTasks('grunt-jasmine-node');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-react');
+  grunt.loadNpmTasks('grunt-contrib-uglify-es');
   grunt.loadNpmTasks('grunt-env');
 
   grunt.registerTask('build',

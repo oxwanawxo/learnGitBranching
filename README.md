@@ -1,6 +1,7 @@
 # LearnGitBranching
 
 [![Build Status](https://travis-ci.org/pcottle/learnGitBranching.svg?branch=master)](https://travis-ci.org/pcottle/learnGitBranching)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?)](https://github.com/pcottle/learnGitBranching/pulls)
 
 LearnGitBranching is a git repository visualizer, sandbox, and a series of educational tutorials and challenges. Its primary purpose is to help developers understand git through the power of visualization (something that's absent when working on the command line). This is achieved through a game with different levels to get acquainted with the different git commands.
 
@@ -73,24 +74,24 @@ at least once before submitting a pull request. That means you'll need the "Grun
 
 https://gruntjs.com/getting-started
 
-You'll also need `npm` to download all the dependencies of the project.
+You'll also need `yarn` to download all the dependencies of the project.
 
 The general workflow / steps are below:
 
 ```bash
 git clone <your fork of the repo>
 cd learnGitBranching
-npm install # to install all the node modules I depend on
+yarn install
 
 git checkout -b newAwesomeFeature
 vim ./src/js/git/index.js # some changes
-grunt fastBuild # skips tests and linting, faster build
+yarn grunt fastBuild # skips tests and linting, faster build
 
 # after building you can open up your browser to the index.html
 # file generated and see your changes
 
 vim ./src/js/git/index.js # more changes
-grunt build # runs tests and lint
+yarn grunt build # runs tests and lint
 
 git commit -am "My new sweet feature!"
 git push
@@ -100,8 +101,8 @@ git push
 Alternatively, you can also build and run the app in a pre-configured online workspace:
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/pcottle/learnGitBranching/blob/master/src/js/git/index.js)
-[//]: contributor-faces
 
+[//]: contributor-faces
 <a href="https://github.com/pcottle"><img src="https://avatars0.githubusercontent.com/u/1135007?v=4" title="pcottle" width="80" height="80"></a>
 <a href="https://github.com/Hongarc"><img src="https://avatars1.githubusercontent.com/u/19208123?v=4" title="Hongarc" width="80" height="80"></a>
 <a href="https://github.com/twmht"><img src="https://avatars1.githubusercontent.com/u/1567200?v=4" title="twmht" width="80" height="80"></a>
@@ -164,4 +165,3 @@ And the following heroes for assisting in translating:
 Also huge shoutout for everyone who has put up a pull request that was pulled! Check out the 30+ contributors we have in the [Contributors View](https://github.com/pcottle/learnGitBranching/graphs/contributors)
 
 And everyone who has reported an issue that was successfully closed!
-
